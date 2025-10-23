@@ -1,6 +1,12 @@
 const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
 const scissors = document.getElementById("scissors");
+const score = {
+  wins : 0,
+  losses : 0,
+  ties: 0
+}
+const reset = document.getElementById("reset");
 
 function computerMove(){
   let randomNumber = Math.floor(Math.random() * 3) + 1;
@@ -34,6 +40,11 @@ scissors.onclick = function (){
   
   results('scissors', compChoice);
 }
+reset.onclick = function (){
+  score.wins = 0;
+  score.losses = 0;
+  score.ties = 0
+}
 
   function results(userChoice, compChoice){
     if(userChoice === 'scissors'){
@@ -46,7 +57,7 @@ scissors.onclick = function (){
   else{
     result = "Tie";
   }
-  window.alert("Your Choice: " + userChoice + "\n"+ "Computer Choice: " + compChoice + "\n" + result);
+  
     }
 
     else if(userChoice === 'paper'){
@@ -59,7 +70,7 @@ scissors.onclick = function (){
   else{
     result = "You Lose";
   }
-  window.alert("Your Choice: " + userChoice + "\n"+ "Computer Choice: " + compChoice + "\n" + result);
+  
     }
 
     else{
@@ -72,8 +83,19 @@ scissors.onclick = function (){
   else{
     result = "You Win";
   }
-  window.alert("Your Choice: " + userChoice + "\n"+ "Computer Choice: " + compChoice + "\n" + result);
+  
     }
+
+    if(result === "You Win"){
+      score.wins += 1;
+    }
+    else if(result === "You Lose"){
+      score.losses += 1;
+    }
+    else if(result === "Tie"){
+      score.ties += 1;
+    }
+    window.alert("Your Choice: " + userChoice + "\n"+ "Computer Choice: " + compChoice + "\n" + result + "\n" + "Wins: " + score.wins + "Losses: " + score.losses + "Ties: " + score.ties);
   }
 
   
