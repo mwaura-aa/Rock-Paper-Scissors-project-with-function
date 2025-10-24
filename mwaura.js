@@ -1,12 +1,14 @@
 const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
 const scissors = document.getElementById("scissors");
-const score = {
-  wins : 0,
-  losses : 0,
+const score = JSON.parse(localStorage.getItem("score")) || {
+  wins: 0,
+  losses: 0,
   ties: 0
-}
+};
 const reset = document.getElementById("reset");
+
+
 
 function computerMove(){
   let randomNumber = Math.floor(Math.random() * 3) + 1;
@@ -44,6 +46,7 @@ reset.onclick = function (){
   score.wins = 0;
   score.losses = 0;
   score.ties = 0
+  localStorage.removeItem('score');
 }
 
   function results(userChoice, compChoice){
@@ -95,7 +98,14 @@ reset.onclick = function (){
     else if(result === "Tie"){
       score.ties += 1;
     }
+
+    localStorage.setItem("score", JSON.stringify(score));
+
     window.alert("Your Choice: " + userChoice + "\n"+ "Computer Choice: " + compChoice + "\n" + result + "\n" + "Wins: " + score.wins + "Losses: " + score.losses + "Ties: " + score.ties);
   }
+
+  localStorage.setItem("name", 'joseph');
+
+  console.log(localStorage.getItem("name"));
 
   
